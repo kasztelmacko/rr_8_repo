@@ -12,3 +12,65 @@ _Suits_ is an American legal drama television series created by **Aaron Korsh**.
 ![Suits Logo](https://upload.wikimedia.org/wikipedia/en/8/88/Suits_season_1_logo.jpg)
 
 ---
+# **Basic Statistics**
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+```
+
+```{r}
+suits_data <- tibble::tribble(
+  ~Season, ~Episodes, ~Avg_Viewers_Millions, ~Avg_Rating_18_49,
+  1, 12, 4.28, 1.4,
+  2, 16, 3.60, 1.2,
+  3, 16, 2.73, 0.9,
+  4, 16, 2.26, 0.7,
+  5, 16, 2.01, 0.6,
+  6, 16, 1.60, 0.4,
+  7, 16, 1.30, 0.3,
+  8, 16, 1.02, 0.2,
+  9, 10, 0.99, 0.2
+)
+```
+
+```{r}
+suits_data %>%
+  kable(caption = "Average Viewership and Ratings Per Season of *Suits*", digits = 2)
+```
+
+```{r}
+ggplot(suits_data, aes(x = Season, y = Avg_Viewers_Millions)) +
+  geom_line(color = "#1c77c3", size = 1.2) +
+  geom_point(size = 3, color = "#fc4f30") +
+  scale_x_continuous(breaks = 1:9) +
+  labs(
+    title = "Average Viewership Per Season",
+    x = "Season",
+    y = "Viewers (Millions)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+suits_data <- suits_data %>%
+    mutate(Change = Avg_Viewers_Millions - lag(Avg_Viewers_Millions))
+
+ggplot(suits_data[-1, ], aes(x = Season, y = Change)) +
+    geom_col(fill = "#fc4f30") +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    scale_x_continuous(breaks = 1:9) +
+    labs(
+        title = "Change in Average Viewership Compared to Previous Season",
+        x = "Season",
+        y = "Change in Viewers (Millions)"
+    ) +
+    theme_minimal()
+```
+
+## Description of observed changes
+- The show started strong with 4.28 million viewers in Season 1.
+- Viewership declined to 2.01 million by Season 5 and reached 0.99 million in the final season.
+- The largest drop occurred between Season 2 and Season 3
+- The 18–49 demographic rating dropped from 1.4 in Season 1 to just 0.2 by Seasons 8 and 9.
