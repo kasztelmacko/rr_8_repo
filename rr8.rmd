@@ -1,0 +1,14 @@
+---
+title: "**TV Show Analysis: _Suits_**"
+author: "Maciej Kasztelanic"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# **Overview**
+
+_Suits_ is an American legal drama television series created by **Aaron Korsh**. It premiered on **USA Network** in **June 2011** and ran for **nine seasons**, concluding in **2019**. The series centers on **Harvey Specter**, a top corporate lawyer in Manhattan, and his associate **Mike Ross**, a brilliant college dropout with a photographic memory.
+
+![Suits Logo](https://upload.wikimedia.org/wikipedia/en/8/88/Suits_season_1_logo.jpg)
+
+---
